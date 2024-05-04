@@ -1,0 +1,2 @@
+# Allow sudo access to the 'wheel' group
+%wheel ALL=(ALL:ALL) ALL
