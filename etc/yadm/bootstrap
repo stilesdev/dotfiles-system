@@ -27,7 +27,6 @@ EOF
 
 # Set the time zone and hardware clock
 ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
-timedatectl set-ntp true
 hwclock --systohc
 
 # Configure localization
@@ -36,20 +35,20 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 locale-gen
 
 # Configure the hostname
-echo "$HOSTNAME" > /etc/hostname
+echo "$YADM_HOSTNAME" > /etc/hostname
 
 # Add matching entries to `/etc/hosts`
 cat > /etc/hosts << EOF
 127.0.0.1   localhost
 ::1         localhost
-127.0.0.1   $HOSTNAME.$DOMAIN $HOSTNAME
+127.0.0.1   $YADM_HOSTNAME.$YADM_DOMAIN $YADM_HOSTNAME
 EOF
 
 # Use traditional interface names (eth0, wlan0, etc...)
 ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 
 # Install wifi-menu dependencies (only needed if wifi-menu will be used to configure wireless connections on the installed system)
-pacman -S dialog wpa_supplicant
+pacman -Syu dialog wpa_supplicant
 
 # Install Intel microcode updates
 pacman -Syu intel-ucode
@@ -78,7 +77,7 @@ passwd
 #echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/10-install
 
 # Create a user account with sudo priviledges
-useradd -m -G wheel "$USERNAME"
-echo "Setting password for $USERNAME"
-passwd "$USERNAME"
+useradd -m -G wheel "$YADM_USERNAME"
+echo "Setting password for $YADM_USERNAME"
+passwd "$YADM_USERNAME"
 
