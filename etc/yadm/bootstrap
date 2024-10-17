@@ -50,9 +50,6 @@ curl https://github.com/stilesdev.gpg | pacman-key --add -
 pacman-key --finger C0AC1B5B
 pacman-key --lsign C0AC1B5B
 
-# Install wifi-menu dependencies (only needed if wifi-menu will be used to configure wireless connections on the installed system)
-pacman -Syu dialog wpa_supplicant
-
 # Install Intel microcode updates
 pacman -Syu intel-ucode
 
