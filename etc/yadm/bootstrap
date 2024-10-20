@@ -81,5 +81,8 @@ useradd -m -G wheel "$YADM_USERNAME"
 echo "Setting password for $YADM_USERNAME"
 passwd "$YADM_USERNAME"
 
+echo "Enabling NetworkManager.service"
+systemctl enable NetworkManager.service
+
 echo "Updating the sysyadm repo origin URL"
 sysyadm remote set-url origin "git@github.com:stilesdev/dotfiles-system.git"
