@@ -5,7 +5,7 @@ if [ -f /etc/yadm/bootstrap-config ]; then
 fi
 
 while [ -z "$YADM_HOSTNAME" ]; do
-    echo -n "Enter the hostname for this system: "
+    echo -n "Enter the hostname (without domain) for this system: "
     read -r YADM_HOSTNAME
 done
 
