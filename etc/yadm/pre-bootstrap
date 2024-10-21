@@ -8,7 +8,7 @@ timedatectl status
 reflector --country US --delay 1 --protocol https --fastest 10 --save /etc/pacman.d/mirrorlist
 
 # Install base packages
-pacstrap /mnt base base-devel linux linux-firmware inetutils man-db man-pages networkmanager wpa_supplicant openssh vim git yadm
+pacstrap /mnt base base-devel linux linux-firmware inetutils man-db man-pages networkmanager wpa_supplicant openssh vim neovim git yadm
 
 # Generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
