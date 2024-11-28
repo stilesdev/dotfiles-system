@@ -46,9 +46,9 @@ EOF
 ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 
 # Import and trust personal key used to build custom packages
-curl https://github.com/stilesdev.gpg | pacman-key --add -
-pacman-key --finger C0AC1B5B
-pacman-key --lsign C0AC1B5B
+curl https://pkg.stiles.dev/archlinux.gpg | pacman-key --add -
+pacman-key --finger F02EF194
+pacman-key --lsign F02EF194
 
 # Install Intel microcode updates
 pacman -Syu intel-ucode
