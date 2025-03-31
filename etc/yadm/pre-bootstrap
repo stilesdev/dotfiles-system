@@ -1,5 +1,38 @@
 #!/usr/bin/env bash
 
+PKG_PACSTRAP=(
+    base
+    base-devel
+    linux
+    linux-firmware
+    man-db
+    man-pages
+    inetutils
+    networkmanager
+    wpa_supplicant
+    openssh
+    git
+    yadm
+    neovim
+)
+
+PKG_PACSTRAP="${PKG_PACSTRAP[@]}"
+
+sourced=false
+if [ -n "$ZSH_VERSION" ]; then
+    case $ZSH_EVAL_CONTEXT in *:file) sourced=true;; esac
+elif [ -n "$BASH_VERSION" ]; then
+    (return 0 2>/dev/null) && sourced=true
+else
+    case ${0##*/} in sh|-sh) sourced=true;; esac
+fi
+
+if $sourced; then
+    export PKG_PACSTRAP
+    return
+fi
+
+
 # Update the system clock
 timedatectl set-ntp true
 timedatectl status
@@ -8,7 +41,7 @@ timedatectl status
 reflector --country US --delay 1 --protocol https --fastest 10 --save /etc/pacman.d/mirrorlist
 
 # Install base packages
-pacstrap /mnt base base-devel linux linux-firmware inetutils man-db man-pages networkmanager wpa_supplicant openssh vim neovim git yadm
+pacstrap /mnt "$PKG_PACSTRAP"
 
 # Generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
