@@ -16,6 +16,15 @@ PKG_PACSTRAP=(
     neovim
 )
 
+case $(lscpu | grep "Vendor ID") in
+*AuthenticAMD)
+    PKG_PACSTRAP+=(amd-ucode)
+    ;;
+*GenuineIntel)
+    PKG_PACSTRAP+=(intel-ucode)
+    ;;
+esac
+
 PKG_PACSTRAP="${PKG_PACSTRAP[@]}"
 
 sourced=false

@@ -49,9 +49,7 @@ ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 curl https://pkg.stiles.dev/archlinux.gpg | pacman-key --add -
 pacman-key --finger 071717CF
 pacman-key --lsign 071717CF
-
-# Install Intel microcode updates
-pacman -Syu intel-ucode
+pacman -Sy
 
 # Set up boot manager
 bootctl --path=/boot install
