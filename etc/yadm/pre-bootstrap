@@ -16,7 +16,7 @@ PKG_PACSTRAP=(
     neovim
 )
 
-case $(lscpu | grep "Vendor ID") in
+case $(lscpu | grep "^Vendor ID:") in
 *AuthenticAMD)
     PKG_PACSTRAP+=(amd-ucode)
     ;;
@@ -50,7 +50,7 @@ timedatectl status
 reflector --country US --delay 1 --protocol https --fastest 10 --save /etc/pacman.d/mirrorlist
 
 # Install base packages
-pacstrap /mnt "$PKG_PACSTRAP"
+pacstrap /mnt $PKG_PACSTRAP || exit $?
 
 # Generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
