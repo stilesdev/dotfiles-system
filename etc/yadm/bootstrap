@@ -58,7 +58,7 @@ cat > /boot/loader/entries/arch.conf << EOF
 title	Arch Linux
 linux 	/vmlinuz-linux
 initrd  /initramfs-linux.img
-options root=$(mount | grep "on / " | cut -s -d ' ' -f 1) rootfstype=ext4 rw add_efi_memmap
+options root=$(mount | grep "on / " | cut -s -d ' ' -f 1) rootfstype=ext4 zswap.enabled=0 rw add_efi_memmap
 EOF
 
 cat > /boot/loader/loader.conf << EOF
