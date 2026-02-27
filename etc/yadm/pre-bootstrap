@@ -57,6 +57,3 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "fstab generated for new system:"
 cat /mnt/etc/fstab
-
-echo "If this appears to be correct for your partition scheme, next run 'arch-chroot /mnt'"
-
