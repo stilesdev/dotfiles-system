@@ -1,2 +1,4 @@
 # Allow sudo access to the 'wheel' group
 %wheel ALL=(ALL:ALL) ALL
+# Allow wheel users to run chvt without password
+%wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/chvt
