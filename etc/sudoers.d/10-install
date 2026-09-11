@@ -2,3 +2,5 @@
 %wheel ALL=(ALL:ALL) ALL
 # Allow wheel users to run chvt without password
 %wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/chvt
+# Allow wheel users to run choom without password
+%wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/choom -n -1000 -p *
